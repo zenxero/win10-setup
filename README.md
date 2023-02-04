@@ -41,15 +41,15 @@ When you right-click and run the [win10setup.bat](win10setup.bat) file as admini
 
 1. The [win10setup.ps1](win10setup.ps1) Powershell script that changes various registry entries to disable telemetry and alter system settings will be executed.
 
-2. The [uninstall-apps.ps1](uninstall-apps.ps1) Powershell script that will uninstall 1st and 3rd party and Microsoft Store apps that I don't want will be executed.
+2. The [uninstall-apps.ps1](uninstall-apps.ps1) Powershell script that will uninstall first-party and third-party Microsoft Store apps that I don't want will be executed.
 
-3. The [winget-installs.ps1](winget-installs.ps1) Powershell script that install various apps with the `winget` tool will be executed.
+3. The [winget-installs.ps1](winget-installs.ps1) Powershell script that installs various apps with the `winget` tool will be executed.
 
 4. The _Chocolatey_ package manager will be installed.
 
 5. The [choco-installs.ps1](choco-installs.ps1) Powershell script that installs various Chocolatey programs will be executed.
 
-6. The O&O ShutUp10 executable will be called and the previously exported config file into the program.
+6. The ShutUp10 executable will be called and it will import the settings from the [ooshutup10.cfg](ooshutup10.cfg) file into the program.
 
 7. The script will display a "Please Reboot Your System Now" message and wait for user input to exit.
 
