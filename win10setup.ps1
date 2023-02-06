@@ -25,6 +25,7 @@ $tweaks = @(
     "DisableNews",
     "DisableBingSearch",
     "DisableSharedExperiences",
+    "DisableWAP",
 
     ### System Tweaks ###
     #"EnablePSWindowsUpdate",
@@ -197,6 +198,11 @@ Function DisableSharedExperiences {
     Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "EnableMmx" -Type DWord -Value 0
 }
 
+Function DisableWAP {
+    Write-Output "Stopping and disabling WAP Push Service..."
+    Stop-Service "dmwappushservice" -WarningAction SilentlyContinue
+    Set-Service "dmwappushservice" -StartupType Disabled
+}
 
 #######################################
 # System Options
