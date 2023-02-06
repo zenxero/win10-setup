@@ -109,20 +109,21 @@ foreach ($msapp in $msapps) {
     Get-AppxPackage -allusers $msapp | Remove-AppxPackage
 }
 
-# If you want to remove the various XBOX apps,
-# uncomment this section
+# If you want to keep the various XBOX apps,
+# comment out this section
 # Remove XBOX Apps
-# Write-Output "Uninstalling XBOX Apps..."
-# $xboxapps = @(
-#     "Microsoft.GamingApp"
-#     "Microsoft.GamingServices"
-#     "Microsoft.Xbox.TCUI"
-#     "Microsoft.XboxApp"
-#     "Microsoft.XboxDevices"
-#     "Microsoft.XboxGameOverlay"
-#     "Microsoft.XboxIdentityProvider"
-#     "Microsoft.XboxSpeechToTextOverlay"
-# )
-# foreach ($xboxapp in $xboxapps) {
-#     Get-AppxPackage -allusers $xboxapp | Remove-AppxPackage
-# }
+Write-Output "Uninstalling XBOX Apps..."
+$xboxapps = @(
+    "Microsoft.GamingApp"
+    "Microsoft.GamingServices"
+    "Microsoft.Xbox.TCUI"
+    "Microsoft.XboxApp"
+    "Microsoft.XboxDevices"
+    "Microsoft.XboxGameOverlay"
+    "Microsoft.XboxGamingOverlay"
+    "Microsoft.XboxIdentityProvider"
+    "Microsoft.XboxSpeechToTextOverlay"
+)
+foreach ($xboxapp in $xboxapps) {
+    Get-AppxPackage -allusers $xboxapp | Remove-AppxPackage
+}
