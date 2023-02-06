@@ -27,7 +27,7 @@ $tweaks = @(
     "DisableSharedExperiences",
 
     ### System Tweaks ###
-    "EnablePSWindowsUpdate",
+    #"EnablePSWindowsUpdate",
     "SetCurrentNetworkPrivate",
     "DisableUpdateRestart",
     "DisableRemoteAssistance",
