@@ -380,11 +380,11 @@ Function DisableEdgeDesktopIcon {
     Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\EdgeUpdate" -Name "CreateDesktopShortcutDefault" -Type DWord -Value 0
 }
 
-# Windows 11 specific. Also doesn't work right
+# Windows 11 specific
 Function Clean11StartMenu {
     Write-Output "Cleaning Start Menu..."
-    Copy-Item "$PWD\start-menu-layout\start2.bin" -Destination "$ENV:LOCALAPPDATA\Packages\Microsoft.Windows.StartMenuExperienceHost_cw5n1h2txyewy\LocalState\start.bin"
-    Copy-Item "$PWD\start-menu-layout\start2.bin" -Destination "$ENV:LOCALAPPDATA\Packages\Microsoft.Windows.StartMenuExperienceHost_cw5n1h2txyewy\LocalState\start2.bin"
+    Copy-Item "$PWD\start-menu-layout\start2.bin" -Destination "$ENV:LOCALAPPDATA\Packages\Microsoft.Windows.StartMenuExperienceHost_cw5n1h2txyewy\LocalState\start.bin" -Force
+    Copy-Item "$PWD\start-menu-layout\start2.bin" -Destination "$ENV:LOCALAPPDATA\Packages\Microsoft.Windows.StartMenuExperienceHost_cw5n1h2txyewy\LocalState\start2.bin" -Force
 }
 
 #######################################
