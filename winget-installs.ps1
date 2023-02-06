@@ -34,6 +34,11 @@ $wingetapps = @(
     @{name = "Microsoft.VCRedist.2015+.x64" }
 );
 
+# We need to interact with winget and accept the source agreements
+# before we're able to actually use it. So, just a random search
+# command will work.
+winget search Microsoft.WindowsTerminal --accept-source-agreements
+
 foreach ($wingetapp in $wingetapps) {
     $listApp = winget list --exact -q $wingetapp.name
     if (![String]::Join("", $listApp).Contains($wingetapp.name)) {
