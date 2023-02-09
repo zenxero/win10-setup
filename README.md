@@ -77,7 +77,7 @@ After it's done, reboot your system.
 <a name="sequenceofevents"></a>
 ## Sequence of events
 
-When you right-click and run the [win10setup.bat](win10setup.bat) file as administrator, the following things will happen:
+When you right-click and run the `win10setup.bat` file as administrator, the following things will happen:
 
 1. The [win10setup.ps1](win10setup.ps1) Powershell script that changes various registry entries to disable telemetry and alter system settings will be executed.
 
