@@ -5,10 +5,50 @@ I made this for my needs, but they will likely be different than yours. I do not
 # win10-setup
 
 ## Table of Contents
+  * [Windows thinks .bat files are viruses](#batfiles)
   * [Description](#description)
   * [Usage](#usage)
   * [Sequence of events](#sequenceofevents)
   * [Resources](#resources)
+
+<a name="batfiles"></a>
+## Windows thinks .bat files are viruses
+
+I noticed that when trying to download this repo via .zip file on Chrome and Edge, that they both think that the .bat file I made to run this is a trojan. It shows up in Windows defender as a threat, which it isn't. It's just the thing that calls the other Powershell scripts. But, since I don't want a Github repo that shows up as a virus, I'm removing the .bat file and placing it here to show what I used to run the other scripts.
+
+```
+@ECHO OFF
+
+cd "%~dp0"
+PowerShell -NoProfile -ExecutionPolicy Bypass -Command "%~dp0win10setup.ps1"
+
+REM Call uninstall apps Powershell script
+PowerShell -NoProfile -ExecutionPolicy Bypass -Command "%~dp0uninstall-apps.ps1"
+
+REM Call winget install Powershell script
+PowerShell -NoProfile -ExecutionPolicy Bypass -Command "%~dp0winget-installs.ps1"
+
+REM Install Chocolatey using their official command
+REM https://chocolatey.org/install
+ECHO:
+ECHO Installing Chocolatey
+ECHO ----------------------------------------
+PowerShell Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+
+REM Call chocolatey package install Powershell script
+PowerShell -NoProfile -ExecutionPolicy Bypass -Command "%~dp0choco-installs.ps1"
+
+ECHO:
+ECHO Importing ShutUp10 Config
+ECHO ----------------------------------------
+%~dp0OOSU10.exe ooshutup10.cfg /quiet
+
+ECHO:
+ECHO Please Reboot Your System Now
+ECHO:
+
+PAUSE
+```
 
 <a name="description"></a>
 ## Description
