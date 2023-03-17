@@ -5,11 +5,19 @@ I made this for my needs, but they will likely be different than yours. I do not
 # win10-setup
 
 ## Table of Contents
+  * [Windows thinks this README is a trojan](#readmescan)
   * [Windows thinks .bat files are viruses](#batfiles)
   * [Description](#description)
   * [Usage](#usage)
   * [Sequence of events](#sequenceofevents)
   * [Resources](#resources)
+
+<a name="readmescan"></a>
+## Windows thinks this README is a trojan
+
+Apparently, Windows Defender thinks that this README itself is a trojan. No clue why. The only thing I can think of it that I have a code block below that describes a `.bat` file to launch the multiple Powershell scripts in this repo.
+
+![Readme Scan](screenshots/readme-scan.png)
 
 <a name="batfiles"></a>
 ## Windows thinks .bat files are viruses
