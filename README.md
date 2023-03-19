@@ -5,106 +5,32 @@ I made this for my needs, but they will likely be different than yours. I do not
 # win10-setup
 
 ## Table of Contents
-  * [Windows thinks this README is a trojan](#readmescan)
-  * [Windows thinks .bat files are viruses](#batfiles)
   * [Description](#description)
   * [Usage](#usage)
-  * [Sequence of events](#sequenceofevents)
   * [Resources](#resources)
-
-<a name="readmescan"></a>
-## Windows thinks this README is a trojan
-
-Apparently, Windows Defender thinks that this README itself is a trojan. No clue why. The only thing I can think of it that I have a code block below that describes a `.bat` file to launch the multiple Powershell scripts in this repo.
-
-![Readme Scan](screenshots/readme-scan.png)
-
-<a name="batfiles"></a>
-## Windows thinks .bat files are viruses
-
-I noticed that when trying to download this repo via .zip file on Chrome and Edge, that they both think that the .bat file I made to run this is a trojan. It shows up in Windows defender as a threat, which it isn't. It's just the thing that calls the other Powershell scripts. But, since I don't want a Github repo that shows up as a virus, I'm removing the .bat file and placing it here to show what I used to run the other scripts.
-
-```
-@ECHO OFF
-
-cd "%~dp0"
-PowerShell -NoProfile -ExecutionPolicy Bypass -Command "%~dp0win10setup.ps1"
-
-REM Call uninstall apps Powershell script
-PowerShell -NoProfile -ExecutionPolicy Bypass -Command "%~dp0uninstall-apps.ps1"
-
-REM Call winget install Powershell script
-PowerShell -NoProfile -ExecutionPolicy Bypass -Command "%~dp0winget-installs.ps1"
-
-REM Install Chocolatey using their official command
-REM https://chocolatey.org/install
-ECHO:
-ECHO Installing Chocolatey
-ECHO ----------------------------------------
-PowerShell Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-
-REM Call chocolatey package install Powershell script
-PowerShell -NoProfile -ExecutionPolicy Bypass -Command "%~dp0choco-installs.ps1"
-
-ECHO:
-ECHO Importing ShutUp10 Config
-ECHO ----------------------------------------
-%~dp0OOSU10.exe ooshutup10.cfg /quiet
-
-ECHO:
-ECHO Please Reboot Your System Now
-ECHO:
-
-PAUSE
-```
 
 <a name="description"></a>
 ## Description
 
-This is a "Right-Click -> Run As Admin" style batch file that calls four other Powershell scripts to automate changing Windows 10 settings, removing unwanted Microsoft Store apps, install some apps with `winget`, install some `chocolatey` packages, and import a _ShutUp10_ config file.
-
-Unlike other "debloating" scripts that I found, I did not want to remove the various security features of Windows like Smartscreen, Windows Defender, etc. I only wanted to turn off as much telemetry as I could, uninstall the Microsoft Store apps that I don't want, as well as change some system and UI settings in a programmatic way.
+Powershell scripts to automatically configure Windows settings via registry edits, uninstalling appx store apps, and installing programs via `winget` or `chocolatey`.
 
 <a name="usage"></a>
 ## Usage
-The only external dependency to use this is the O&O ShutUp10 executable. This should to be downloaded from their site and placed in the same directory as the rest of these files when you run the batch file. I didn't want to include or re-distribute the EXE in this repo since it's a proprietary third-party program.
 
-You can download it from their site:
-https://www.oo-software.com/en/shutup10
+These scripts can be downloaded an ran locally via elevated Powershell, or directly from github with the `Invoke-WebRequest` command like this:
 
-After that, you should check out and edit the following files as needed:
-  * [win10setup.ps1](win10setup.ps1)
-  * [uninstall-apps.ps1](uninstall-apps.ps1)
-  * [winget-installs.ps1](winget-installs.ps1)
-  * [choco-installs.ps1](choco-installs.ps1)
-
-Once you're ready and have ShutUp10 in the directory, just right-click the [win10setup.bat](win10setup.bat) file and click "Run as administrator".
+```
+Invoke-WebRequest <Raw Github URL>/win10setup.ps1 -UseBasicParsing | Invoke-Expression
+```
 
 After it's done, reboot your system.
-
-<a name="sequenceofevents"></a>
-## Sequence of events
-
-When you right-click and run the `win10setup.bat` file as administrator, the following things will happen:
-
-1. The [win10setup.ps1](win10setup.ps1) Powershell script that changes various registry entries to disable telemetry and alter system settings will be executed.
-
-2. The [uninstall-apps.ps1](uninstall-apps.ps1) Powershell script that will uninstall first-party and third-party Microsoft Store apps that I don't want will be executed.
-
-3. The [winget-installs.ps1](winget-installs.ps1) Powershell script that installs various apps with the `winget` tool will be executed.
-
-4. The _Chocolatey_ package manager will be installed.
-
-5. The [choco-installs.ps1](choco-installs.ps1) Powershell script that installs various Chocolatey programs will be executed.
-
-6. The ShutUp10 executable will be called and it will import the settings from the [ooshutup10.cfg](ooshutup10.cfg) file into the program.
-
-7. The script will display a "Please Reboot Your System Now" message and wait for user input to exit.
 
 <a name="resources"></a>
 ## Resources
 
 I used quite a few resources putting this together. Here's the list:
+
+* https://github.com/lloydjatkinson/configuration
 
 * https://chris-ayers.com/2021/08/01/scripting-winget/
 
