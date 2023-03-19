@@ -2,6 +2,8 @@
 # Windows 10 Setup Script
 #
 
+#Requires -RunAsAdministrator
+
 @"
 
 Running Windows 10 Setup Script
