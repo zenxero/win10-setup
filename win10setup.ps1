@@ -192,6 +192,10 @@ Function DisableBingSearch {
         New-Item -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search" | Out-Null
     }
     Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search" -Name "BingSearchEnabled" -Type DWord -Value 0
+    If (!(Test-Path "HKCU:\Software\Policies\Microsoft\Windows\Explorer")) {
+        New-Item -Path "HKCU:\Software\Policies\Microsoft\Windows\Explorer" | Out-Null
+    }
+    Set-ItemProperty -Path "HKCU:\Software\Policies\Microsoft\Windows\Explorer" -Name "DisableSearchBoxSuggestions" -Type DWord -Value 1
 }
 
 Function DisableSharedExperiences {
