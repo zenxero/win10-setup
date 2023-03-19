@@ -77,6 +77,7 @@ foreach ($junkapp in $junkapps) {
 # Remove Extra Microsoft Apps
 Write-Output "Uninstalling Microsoft Apps..."
 $msapps = @(
+    "*WebExperience*"
     "Clipchamp.Clipchamp"
     "Microsoft.BingFinance"
     "Microsoft.BingNews"
