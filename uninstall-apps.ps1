@@ -2,6 +2,8 @@
 # Uninstall Apps Script
 #
 
+#Requires -RunAsAdministrator
+
 @"
 
 Uninstalling Unwanted Apps
