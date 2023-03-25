@@ -2,6 +2,8 @@
 # Chocolatey Package Installs
 #
 
+#Requires -RunAsAdministrator
+
 @"
 
 Installing Chocolatey Packages
