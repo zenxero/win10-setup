@@ -10,10 +10,6 @@ Uninstalling Unwanted Apps
 ----------------------------------------
 "@
 
-#######################################
-# Remove Apps
-#######################################
-
 # Remove Any 3rd Party Junk Apps
 # These shouldn't be installed on a clean install, but
 # some of them could come pre-loaded with OEM installs.
