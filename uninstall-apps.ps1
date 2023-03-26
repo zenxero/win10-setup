@@ -101,6 +101,7 @@ $msapps = @(
     "Microsoft.YourPhone"
     "Microsoft.ZuneMusic"
     "Microsoft.ZuneVideo"
+    "MicrosoftCorporationII.MicrosoftFamily"
     "MicrosoftCorporationII.QuickAssist"
     "MicrosoftTeams"
 )
