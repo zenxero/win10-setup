@@ -7,6 +7,7 @@ I made this for my needs, but they will likely be different than yours. I do not
 ## Table of Contents
   * [Description](#description)
   * [Usage](#usage)
+  * [ShutUp10](#shutup10)
   * [Resources](#resources)
 
 <a name="description"></a>
@@ -24,6 +25,19 @@ Invoke-WebRequest <Raw Github URL>/win10setup.ps1 -UseBasicParsing | Invoke-Expr
 ```
 
 After it's done, reboot your system.
+
+<a name="shutup10"></a>
+## ShutUp10
+
+ShutUp10 is a really handy program that lets you toggle many different Windows settings in a convenient way.
+
+https://www.oo-software.com/en/shutup10
+
+You can import existing config files either from the GUI, or using the command line:
+
+```
+0OOSU10.exe ooshutup10.cfg /quiet
+```
 
 <a name="resources"></a>
 ## Resources
